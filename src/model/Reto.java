@@ -6,14 +6,16 @@ import java.util.List;
 public class Reto {
     private int id;
     private String nombre;
+    private String descripcion;
     private int puntosMaximos;
     private int tiempoMinutos;
     private EstadoReto estado;
     private List<Resultado> resultados;
 
-    public Reto(int id, String nombre, int puntosMaximos, int tiempoMinutos) {
+    public Reto(int id, String nombre, String descripcion, int puntosMaximos, int tiempoMinutos) {
         this.id = id;
         this.nombre = nombre;
+        this.descripcion =descripcion;
         this.puntosMaximos = puntosMaximos;
         this.tiempoMinutos = tiempoMinutos;
         this.estado = EstadoReto.PENDIENTE;  // Por defecto inicia en PENDIENTE
@@ -44,6 +46,14 @@ public class Reto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public int getPuntosMaximos() {
@@ -80,7 +90,7 @@ public class Reto {
 
     @Override
     public String toString() {
-        return String.format("Reto{id=%d, nombre='%s', puntosMaximos=%d, tiempoMinutos=%d, estado=%s, resultados=%s}",
-                id, nombre, puntosMaximos, tiempoMinutos, estado, resultados);
+        return String.format("Reto{id=%d, nombre='%s', descripcion=%s, puntosMaximos=%d, tiempoMinutos=%d, estado=%s, resultados=%s}",
+                id, nombre, descripcion, puntosMaximos, tiempoMinutos, estado, resultados);
     }
 }

@@ -1,11 +1,13 @@
 package service;
 
 import model.Participante;
+import model.Resultado;
 import model.Reto;
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class GestorParticipantes {
     private List<Participante> participantes;
@@ -61,26 +63,54 @@ public class GestorParticipantes {
     }
 
     public List<Participante> listarParticipantes() {
-     return ;
+        GestorDatos.DatosApp datos = gestorDatos.cargarDatos();
+     return datos.participantes;
     }
 
     public int calcularPuntosTotales(String nombre) {
-        return ;
+        if (gestorRetos == null) {
+            return 0;
+        }
+
+        GestorDatos.DatosApp datos = gestorDatos.cargarDatos();
+        int puntosTotales = 0;
+
+        for (Reto reto : datos.retos) {
+            for (Resultado resultado : reto.getResultados()) {
+                puntosTotales  += resultado.getPuntosObtenidos();
+            }
+        }
+        return puntosTotales;
     }
 
     public boolean existeParticipantes(String nombre) {
-        return ;
+        GestorDatos.DatosApp datos = gestorDatos.cargarDatos();
+
+        for (Participante p: datos.participantes) {
+            if (p.getNombre().equals(nombre)) {
+                return  true;
+            }
+        }
+        return false;
     }
 
     public List<Map.Entry<Participante, Integer>> obtenerRankingOrdenado() {
+        Map<Participante, Integer> puntosMap = new HashMap<>();
+        List<Participante> participantes = listarParticipantes();
+
+        for (Participante p : participantes) {
+            int puntos = calcularPuntosTotales(p.getNombre());
+            puntosMap.put(p, puntos);
+        }
+
+        return puntosMap.entrySet().stream().sorted(Map.Entry.<Participante, Integer>comparingByValue().reversed()).collect(Collectors.toList());
 
     }
 
     public void cargarParticipantes(List<Participante> participantes) {
+        GestorDatos.DatosApp datos = gestorDatos.cargarDatos();
+        this.participantes = new ArrayList<>(datos.participantes);
 
     }
 
-    public List<Participante> getParticipantes() {
-
-    }
 }
