@@ -6,10 +6,11 @@ import service.GestorParticipantes;
 import service.GestorRetos;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import static util.Utils.formatearMenu;
 import static util.Utils.limpiarPantalla;
 import static util.Utils.pausar;
-import static util.Utils.formatearMenu;
 
 
 public class MenuPrincipal {
@@ -82,12 +83,12 @@ public class MenuPrincipal {
         System.out.print("Opción: ");
     }
 
-    public void menuVerRanking() {
+    private void menuVerRanking() {
         // 1. Limpiar pantalla
         limpiarPantalla();
 
         // 2. Obtener ranking ordenado del gestor
-        List<Participante> ranking = gestorParticipantes.obtenerRankingOrdenado();
+        List<Map.Entry<Participante, Integer>> ranking = gestorParticipantes.obtenerRankingOrdenado();
 
         // 3. Mostrar ranking
         VistaConsola.mostrarRanking(ranking);
@@ -97,5 +98,25 @@ public class MenuPrincipal {
 
         // 5. Esperar ENTER
         scanner.nextLine();
+    }
+
+    private void menuGestionarParticipantes() {
+
+    }
+
+    private void menuCrearReto() {
+
+    }
+
+    private void menuIniciarReto() {
+
+    }
+
+    private void menuHistorial() {
+
+    }
+
+    private void procesarRetoEnCurso() {
+
     }
 }
