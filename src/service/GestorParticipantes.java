@@ -1,18 +1,19 @@
 package service;
 
-import model.Participante;
-import model.Resultado;
-import model.Reto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import model.Participante;
+import model.Resultado;
+import model.Reto;
+
 public class GestorParticipantes {
     private List<Participante> participantes;
-    private GestorDatos        gestorDatos;
-    private GestorRetos        gestorRetos;
+    private GestorDatos gestorDatos;
+    private GestorRetos gestorRetos;
 
     public GestorParticipantes(GestorDatos gestorDatos) {
         this.gestorDatos = gestorDatos;
@@ -79,7 +80,7 @@ public class GestorParticipantes {
 
     public List<Participante> listarParticipantes() {
         GestorDatos.DatosApp datos = gestorDatos.cargarDatos();
-     return datos.participantes;
+        return datos.participantes;
     }
 
     public int calcularPuntosTotales(String nombre) {
@@ -93,7 +94,7 @@ public class GestorParticipantes {
         for (Reto reto : datos.retos) {
             for (Resultado resultado : reto.getResultados()) {
                 if (resultado.getNombreParticipante().equals(nombre)) {
-                    puntosTotales  += resultado.getPuntosObtenidos();
+                    puntosTotales += resultado.getPuntosObtenidos();
                 }
             }
         }
@@ -103,9 +104,9 @@ public class GestorParticipantes {
     public boolean existeParticipante(String nombre) {
         GestorDatos.DatosApp datos = gestorDatos.cargarDatos();
 
-        for (Participante p: datos.participantes) {
+        for (Participante p : datos.participantes) {
             if (p.getNombre().equals(nombre)) {
-                return  true;
+                return true;
             }
         }
         return false;
@@ -120,7 +121,8 @@ public class GestorParticipantes {
             puntosMap.put(p, puntos);
         }
 
-        return puntosMap.entrySet().stream().sorted(Map.Entry.<Participante, Integer>comparingByValue().reversed()).collect(Collectors.toList());
+        return puntosMap.entrySet().stream().sorted(Map.Entry.<Participante, Integer>comparingByValue().reversed())
+                .collect(Collectors.toList());
 
     }
 
@@ -131,8 +133,8 @@ public class GestorParticipantes {
     }
 
     public boolean actualizarParticipante(String nombreActual, String nombreNuevo) {
-        if (nombreActual == null || nombreActual.trim().isEmpty() || 
-            nombreNuevo == null || nombreNuevo.trim().isEmpty()) {
+        if (nombreActual == null || nombreActual.trim().isEmpty() ||
+                nombreNuevo == null || nombreNuevo.trim().isEmpty()) {
             return false;
         }
 

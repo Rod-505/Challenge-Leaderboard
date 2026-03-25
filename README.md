@@ -1,12 +1,87 @@
 # Ranking-Retos
 
-<dependencies>
-    <dependency>
-        <groupId>com.google.code.gson</groupId>
-        <artifactId>gson</artifactId>
-        <version>2.10.1</version>
-    </dependency>
-</dependencies>
+Sistema de gestión de retos con ranking por consola (estilo CLI shell).
+
+## 🚀 Uso
+
+Compila y ejecuta:
+
+```bash
+mvn clean compile exec:java
+```
+
+## 💻 Comandos Disponibles
+
+```
+ranking> crear "Reto de Programación" "Resolver algoritmo" 100 30
+✅ Reto creado exitosamente
+
+ranking> listar
+=== RETOS DISPONIBLES ===
+ID  Nombre               Puntos  Tiempo
+1   Reto de Programación  100     30 min
+
+ranking> ver 1
+=== DETALLES DEL RETO ===
+ID: 1
+Nombre: Reto de Programación
+Descripción: Resolver algoritmo
+Puntos: 100
+Tiempo: 30 minutos
+Estado: PENDIENTE
+Participantes: 0
+
+ranking> participante agregar "Juan Pérez"
+✅ Participante registrado
+
+ranking> ranking
+=== RANKING GENERAL ===
+Posición  Participante  Puntos
+1         Juan Pérez     0
+
+ranking> ayuda
+=== COMANDOS DISPONIBLES ===
+crear "nombre" [desc] [puntos] [tiempo]  - Crear reto
+listar [retos|participantes]             - Listar elementos
+ver <id>                                 - Ver detalles
+eliminar <id>                            - Eliminar reto
+participante <subcomando>                - Gestionar participantes
+ranking                                  - Ver ranking
+ayuda                                    - Mostrar ayuda
+salir                                    - Salir
+
+ranking> salir
+ℹ️ ¡Hasta luego!
+```
+
+## 🏗️ Arquitectura
+
+```
+ui/
+├── cli/           # Entrada y procesamiento
+│   ├── InputReader.java     # Lectura de entrada
+│   └── CommandHandler.java  # Interpretación de comandos
+├── view/          # Salida y formateo
+│   ├── ConsoleView.java     # Coordinación de vista
+│   └── Formatter.java       # Formateo de texto
+└── menu/          # Coordinación general
+    └── RankingShell.java    # Shell principal
+```
+
+## 📦 Dependencias
+
+- Gson 2.10.1 (para persistencia JSON)
+
+## 🔧 Desarrollo
+
+La UI está diseñada para ser extensible. Cada componente tiene responsabilidades claras:
+
+- **InputReader**: Solo lee entrada
+- **CommandHandler**: Solo procesa comandos
+- **ConsoleView**: Solo muestra salida
+- **Formatter**: Solo formatea texto
+
+Los métodos marcados con `TODO` necesitan implementación de la lógica específica.
 ```
 
 ---
