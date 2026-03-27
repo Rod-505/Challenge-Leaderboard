@@ -1,9 +1,5 @@
 package service;
 
-import com.google.gson.Gson;
-import model.Participante;
-import model.Reto;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,14 +8,21 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import model.Participante;
+import model.Reto;
+
 public class GestorDatos {
     private final String RUTA_DATOS = "data/datos.json";
     private Gson gson;
 
     public GestorDatos() {
-        this.gson = new Gson();
+        this.gson = new GsonBuilder().setPrettyPrinting().create();
         crearArchivoSiNoExiste();
     }
+
     public static class DatosApp {
         List<Participante> participantes = new ArrayList<>();
         List<Reto> retos = new ArrayList<>();

@@ -147,6 +147,7 @@ public class ConsoleView {
         System.out.println("iniciar <id>                                   - Iniciar un reto pendiente");
         System.out.println("eliminar <id>                                  - Eliminar reto");
         System.out.println("participante <subcomando>                      - Gestionar participantes");
+        System.out.println("unir <reto_id> <participante_nombre>           - Agregar participante a reto");
         System.out.println("ranking                                        - Ver ranking general");
         System.out.println("ayuda                                          - Mostrar esta ayuda");
         System.out.println("salir                                          - Salir del programa");

@@ -10,12 +10,17 @@ import model.Reto;
 public class GestorRetos {
 
     private GestorDatos gestorDatos;
+    private GestorParticipantes gestorParticipantes;
     private int ultimoId;
 
     public GestorRetos(GestorDatos gestorDatos) {
         GestorDatos.DatosApp datos = gestorDatos.cargarDatos();
         this.gestorDatos = gestorDatos;
         this.ultimoId = datos.ultimoIdReto;
+    }
+
+    public void setGestorParticipantes(GestorParticipantes gestorParticipantes) {
+        this.gestorParticipantes = gestorParticipantes;
     }
 
     public Reto crearReto(String nombre, String descripcion, int puntosMax, int tiempo) {
@@ -86,6 +91,11 @@ public class GestorRetos {
         // Si no existe el reto, retornar false
         if (retoTarget == null) {
             return false;
+        }
+
+        // Verificar que el participante esté registrado
+        if (gestorParticipantes == null || gestorParticipantes.obtenerParticipante(nombreParticipante) == null) {
+            return false; // Participante no registrado
         }
 
         // Verificar si el participante ya existe en ESTE reto

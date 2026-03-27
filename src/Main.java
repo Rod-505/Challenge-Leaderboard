@@ -13,6 +13,7 @@ public class Main {
 
         // Conectar gestores
         gestorParticipantes.setGestorRetos(gestorRetos);
+        gestorRetos.setGestorParticipantes(gestorParticipantes);
 
         // Lanzar interfaz CLI
         RankingShell shell = new RankingShell(gestorRetos, gestorParticipantes);

@@ -72,6 +72,8 @@ public class CommandHandler {
                 return handleIniciar(args);
             case "participante":
                 return handleParticipante(args);
+            case "unir":
+                return handleUnir(args);
             case "ranking":
                 return handleRanking();
             case "ayuda":
@@ -294,6 +296,39 @@ public class CommandHandler {
             default:
                 consoleView.showError("Argumento no reconocido. Uso: participante <agregar||eliminar||listar>");
                 break;
+        }
+        return true;
+    }
+
+    /**
+     * Maneja comando 'unir'
+     * Sintaxis: unir <reto_id> <participante_nombre>
+     */
+    private boolean handleUnir(String args) {
+        if (args == null || args.trim().isEmpty()) {
+            consoleView.showError("Uso: unir <reto_id> <participante_nombre>");
+            return true;
+        }
+
+        String[] partes = args.split("\\s+", 2);
+        if (partes.length < 2) {
+            consoleView.showError("Uso: unir <reto_id> <participante_nombre>");
+            return true;
+        }
+
+        try {
+            int retoId = Integer.parseInt(partes[0]);
+            String nombreParticipante = partes[1];
+
+            boolean agregado = gestorRetos.agregarParticipanteAlReto(retoId, nombreParticipante);
+            if (agregado) {
+                consoleView.showSuccess("Participante '" + nombreParticipante + "' agregado al reto " + retoId);
+            } else {
+                consoleView.showError(
+                        "No se pudo agregar el participante. Verifique que el reto existe, el participante está registrado y no está ya en el reto.");
+            }
+        } catch (NumberFormatException e) {
+            consoleView.showError("El ID del reto debe ser un número");
         }
         return true;
     }
