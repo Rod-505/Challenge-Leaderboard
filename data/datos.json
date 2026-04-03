@@ -1,20 +1,30 @@
 {
-    "participantes": [
+  "participantes": [
+    {
+      "id": "RK001",
+      "nombre": "Juan"
+    },
+    {
+      "id": "RK002",
+      "nombre": "Alexander"
+    }
+  ],
+  "retos": [
+    {
+      "id": 1,
+      "nombre": "Buzz",
+      "descripcion": "Crea un programa que sume",
+      "puntosMaximos": 100,
+      "tiempoMinutos": 1,
+      "estado": "EN_CURSO",
+      "resultados": [
         {
-            "id": "RK001",
-            "nombre": "Juan"
+          "nombreParticipante": "Alexander",
+          "puntosObtenidos": 100,
+          "posicion": 1
         }
-    ],
-    "retos": [
-        {
-            "id": 1,
-            "nombre": "Buzz",
-            "descripcion": "Crea un programa que sume",
-            "puntosMaximos": 100,
-            "tiempoMinutos": 1,
-            "estado": "EN_CURSO",
-            "resultados": []
-        }
-    ],
-    "ultimoIdReto": 1
+      ]
+    }
+  ],
+  "ultimoIdReto": 1
 }
